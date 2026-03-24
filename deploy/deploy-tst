@@ -1,0 +1,18 @@
+#!/bin/bash
+
+set -e
+
+REPO_DIR="/home/potaping/repos/potapingpong-site"
+TARGET_DIR="/home/potaping/tst.potapingpong.hu"
+
+echo "==> Repo frissítése"
+cd "$REPO_DIR"
+git pull origin develop
+
+echo "==> Plugin deploy tst-re"
+
+rsync -av --delete \
+"$REPO_DIR/wp-content/plugins/pota-amelia-blocker-form-based/" \
+"$TARGET_DIR/wp-content/plugins/pota-amelia-blocker-form-based/"
+
+echo "==> Staging deploy kész"
